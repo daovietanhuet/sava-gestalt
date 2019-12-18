@@ -9,7 +9,7 @@ class Home extends React.Component {
         return(
             <Box>
                 <Box>
-                    <Box width="100%" f>
+                    <Box width="100%" display="flex" justifyContent="center" alignItems="center">
                     <Collage
                         columns={3}
                         height={300}

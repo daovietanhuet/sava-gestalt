@@ -59,7 +59,7 @@ class Ranking extends React.Component {
                   <Heading size="xs" truncate>Công thức màu</Heading>
                 </Box>
                 <Box paddingX={1}>
-                  <Text truncate>quotes quotes quotes</Text>
+                  <Text truncate>Có công mài sắt có ngày nên kim</Text>
                 </Box>
               </Column>
               <Column span={3}>
@@ -87,10 +87,10 @@ class Ranking extends React.Component {
             <Box display="flex" padding={1}>
               <Column span={9}>
                 <Box paddingX={1}>
-                  <Heading size="xs" truncate>Công thức màu</Heading>
+                  <Heading size="xs" truncate>Book family</Heading>
                 </Box>
                 <Box paddingX={1}>
-                  <Text truncate>quotes quotes quotes</Text>
+                  <Text truncate>Thất bại là mẹ thành công</Text>
                 </Box>
               </Column>
               <Column span={3}>

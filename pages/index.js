@@ -173,6 +173,7 @@ class Main extends React.Component {
       score: info.info.scores,
       avatar: info.info.avatar,
       cover: info.info.cover,
+      buy: {...buy, ...info.info.buy},
       family: info.info.family ? info.info.family : "Book Family" 
     })
 
