@@ -105,7 +105,9 @@ class Main extends React.Component {
   }
 
   loadQuestions() {
-    fetch('https://script.google.com/macros/s/AKfycbwpNF-w_pvlbmMegVZzhi8iWYmvdSOgdabp7iA6sqXoiTWKxQzF/exec')
+    fetch(`https://script.google.com/macros/s/AKfycbwpNF-w_pvlbmMegVZzhi8iWYmvdSOgdabp7iA6sqXoiTWKxQzF/exec?data=${JSON.stringify(this.state.allPackages[this.state.choosePackage])}`, {
+      method: "GET",
+    })
       .then(result => 
           result.json()
       )
