@@ -1,0 +1,44 @@
+{
+  "devFiles": [],
+  "pages": {
+    "/": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/css/commons.e2a08f32.chunk.css",
+      "static/chunks/commons.5dd6e971646d03063a95.js",
+      "static/runtime/main-3d25bee210cd3a1997f4.js"
+    ],
+    "/_app": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/css/commons.e2a08f32.chunk.css",
+      "static/chunks/commons.5dd6e971646d03063a95.js",
+      "static/runtime/main-3d25bee210cd3a1997f4.js"
+    ],
+    "/_error": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/css/commons.e2a08f32.chunk.css",
+      "static/chunks/commons.5dd6e971646d03063a95.js",
+      "static/runtime/main-3d25bee210cd3a1997f4.js"
+    ],
+    "/_polyfills": [
+      "static/runtime/polyfills-9433c270ab87f235f594.js"
+    ],
+    "/game": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/css/commons.e2a08f32.chunk.css",
+      "static/chunks/commons.5dd6e971646d03063a95.js",
+      "static/runtime/main-3d25bee210cd3a1997f4.js"
+    ],
+    "/index": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/css/commons.e2a08f32.chunk.css",
+      "static/chunks/commons.5dd6e971646d03063a95.js",
+      "static/runtime/main-3d25bee210cd3a1997f4.js"
+    ],
+    "/login": [
+      "static/runtime/webpack-9369c5c69dbf6d4912cb.js",
+      "static/css/commons.e2a08f32.chunk.css",
+      "static/chunks/commons.5dd6e971646d03063a95.js",
+      "static/runtime/main-3d25bee210cd3a1997f4.js"
+    ]
+  }
+}
