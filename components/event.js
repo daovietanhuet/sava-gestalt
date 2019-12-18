@@ -29,6 +29,7 @@ class Event extends React.Component {
                     </Box>
                   </Column>
                   <Column span={9}>
+                    <div onClick={e => {this.props.onGoInfo(event.packageIndex, this.props.buy["" + event.packageIndex + ""] ? 'info' : 'infoshop')}}>
                     <Box display="flex" direction="column">
                       <Column span={12}>
                         <Box><Text weight="bold">{event.eventTitle}</Text></Box>
@@ -52,6 +53,7 @@ class Event extends React.Component {
                         </Box>
                       </Column>
                     </Box>
+                    </div>
                   </Column>
                 </Box>
               </Box>

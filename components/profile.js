@@ -6,6 +6,16 @@ class Profile extends React.Component {
   render() {
     return(
       <Box>
+        <Box>
+          <Mask shape="rounded" width="100%" height="40vh">
+            <Image
+              alt={this.props.name}
+              src={this.props.cover}
+              naturalHeight={1}
+              naturalWidth={1}
+            />
+          </Mask>
+        </Box>
         <Box marginTop={2} display="flex" alignItems="center">
           <Column span={9}>
             <Box>
@@ -32,7 +42,7 @@ class Profile extends React.Component {
           </Column>
         </Box>
         <Box paddingY={3} height="3rem">
-          <Text >Xếp hạng 11 . 12375 điểm aksdjfkl jakdsjf lkasdj flkajdf lkasdsjflkajdfslkajdsflkjsaddfjlk</Text>
+          <Text> Trên con đường thành công không có dấu chân của kẻ lười biếng  </Text>
         </Box>
       </Box>
     )

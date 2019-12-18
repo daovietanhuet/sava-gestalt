@@ -14,6 +14,7 @@ import Game from '../components/game';
 import Register from '../components/register';
 import Question from '../components/question';
 import Result from '../components/result';
+import Forgot from '../components/forgot';
 import 'gestalt/dist/gestalt.css';
 import './index.css';
 
@@ -31,6 +32,7 @@ class Main extends React.Component {
       route: "home",
       ////////////////
       id: "",
+      ads : [],
       data: [],
       name: "",
       family: "Book Family",
@@ -97,7 +99,18 @@ class Main extends React.Component {
   }
 
   buyPackage(index) {
-    this.setState(prevState => { prevState.buy["" + index + ""] = true; return { buy: prevState.buy }})
+    this.setState(prevState => { 
+      prevState.buy["" + index + ""] = true; 
+      fetch(`https://savacloud.herokuapp.com/buy`, {
+        method: "POST", 
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state.buy)
+      })
+      return { buy: prevState.buy }
+    })
   }
 
   choosePackage(index) {
@@ -159,7 +172,8 @@ class Main extends React.Component {
       rank: "",
       score: info.info.scores,
       avatar: info.info.avatar,
-      cover: info.info.cover
+      cover: info.info.cover,
+      family: info.info.family ? info.info.family : "Book Family" 
     })
 
     this.state.socket.emit('username', {name: decodeURIComponent(escape(info.info.name)), avatar: info.info.avatar, id: info.userId});
@@ -224,7 +238,7 @@ class Main extends React.Component {
     if(this.state.page === 'login') return (<Login changeRoute={route => this.changePage(route)} {...this.state}/>)
     else if(this.state.page === 'game') return (<Game changeRoute={route => this.changePage(route)} {...this.state} changeRoom={value => this.changeRoom(value)}/>)
     else if(this.state.page === 'register') return (<Register changeRoute={route => this.changePage(route)} {...this.state}/>)
-    else if(this.state.page === 'fogot') return (<Game changeRoute={route => this.changePage(route)} {...this.state}/>)
+    else if(this.state.page === 'fogot') return (<Forgot changeRoute={route => this.changePage(route)} {...this.state}/>)
     else if(this.state.page === 'question') return (<Question changeRoute={route => this.changePage(route)} {...this.state}/>)
     else if(this.state.page === 'result') return (<Result changeRoute={route => this.changePage(route)} {...this.state} resetAnswer={() => this.resetResult()}/>)
     else return(
@@ -339,7 +353,7 @@ class Main extends React.Component {
               this.state.route === "ranking" ? 
                 <Ranking {...this.state}/> :
                 this.state.route === "event" ?
-                  <Event {...this.state}/>:
+                  <Event {...this.state} onGoInfo={(index, route) => {this.changeRoute(route); this.choosePackage(index)}}/>:
                   this.state.route === "mission" ?
                     <Mission {...this.state}/> : 
                     this.state.route === "shopping" ?

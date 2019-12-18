@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Avatar, Text, Divider, Column, Mask, Image, Heading, Touchable, Icon, IconButton} from "gestalt";
+import {Box, Avatar, Text, Divider, Column, Mask, Image, Heading, Touchable, Icon, IconButton, Collage} from "gestalt";
 
 class Home extends React.Component {
     constructor(props) {
@@ -9,6 +9,26 @@ class Home extends React.Component {
         return(
             <Box>
                 <Box>
+                    <Box width="100%" f>
+                    <Collage
+                        columns={3}
+                        height={300}
+                        width={300}
+                        renderImage={({ index, width, height }) => {
+
+                            return (
+                            <Mask wash width={width} height={height}>
+                                <Image
+                                    alt="collage image"
+                                    fit="cover"
+                                    naturalHeight={1}
+                                    naturalWidth={1}
+                                    src={this.props.ads[index]}
+                                />
+                            </Mask>
+                            );
+                        }}/>
+                    </Box>
                     <Box padding={3}>
                         <Text weight="bold" size="sm">Hãy khám phá các gói bạn đã mua. Các gói được phân loại theo từng chủ đề, hãy chọn một chủ đề và bắt đầu khám phá!</Text>
                     </Box>

@@ -1,16 +1,18 @@
 import React from 'react';
-import {Box, Avatar, Text, Divider, Column, SegmentedControl, Mask, Image, Button, Touchable} from "gestalt";
+import {Box, Avatar, Text, Divider, Column, SegmentedControl, Mask, Image, Button, Touchable, Modal} from "gestalt";
 import {TiGroupOutline, TiUserOutline} from "react-icons/ti";
 
 class Shopping extends React.Component {
   constructor(props) {
     super(props);
+    this.handleToggleSmall = this.handleToggleSmall.bind(this)
     this.state = {
       itemIndex: 0,  
       packages: ['familyPackages',
       'childrenPackages',
       'entertainmentPackages',
-      'competitionPackages']
+      'competitionPackages'],
+      sm: false
     };
     this.handleItemChange = this.handleItemChange.bind(this);
   }
@@ -18,6 +20,10 @@ class Shopping extends React.Component {
   handleItemChange({ activeIndex }) {
     this.setState(prevState => ({ itemIndex: activeIndex }));
   };
+
+  handleToggleSmall() {
+    this.setState(prevState => ({ sm: !prevState.sm }));
+  }
 
   render() {
     const items = [
@@ -79,7 +85,7 @@ class Shopping extends React.Component {
                             </Mask>
                             </Touchable>
                             <Box paddingY={2}>
-                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"} onClick={e => this.props.buyPackage(value)} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
+                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"} onClick={e => {this.handleToggleSmall()}} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
                             </Box>
                           </Box>
                         </Column>)
@@ -117,7 +123,33 @@ class Shopping extends React.Component {
                               </Mask>
                               </Touchable>
                             <Box paddingY={2}>
-                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"}  onClick={e => this.props.buyPackage(value)} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
+                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"}  onClick={e => {this.handleToggleSmall()}} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
+                              {
+                              this.state.sm && (
+                              <Modal
+                                accessibilityCloseLabel="close"
+                                accessibilityModalLabel="confirm"
+                                heading="Xác nhận"
+                                onDismiss={this.handleToggleSmall}
+                                size="sm"
+                              >
+                                <Box padding={2}>
+                                  <Text align="center">Bạn có muốn mua gói này ?</Text>
+                                </Box>
+                                <Box padding={2} display="flex">
+                                  <Column span={6}>
+                                    <Box padding={1}>
+                                      <Button text="Có" color="blue" onClick={e => {this.props.buyPackage(value); this.handleToggleSmall()}}/>
+                                    </Box>
+                                  </Column>
+                                  <Column span={6}>
+                                    <Box padding={1}>
+                                      <Button text="Không" color="red" onClick={e => {this.handleToggleSmall()}}/>
+                                    </Box>
+                                  </Column>
+                                </Box>
+                              </Modal>
+                              )}
                             </Box>
                           </Box>
                         </Column>)
