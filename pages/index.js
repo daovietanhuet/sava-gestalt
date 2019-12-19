@@ -105,10 +105,12 @@ class Main extends React.Component {
         method: "POST", 
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
         },
-        body: JSON.stringify(this.state.buy)
+        body: JSON.stringify({buy: this.state.buy})
       })
+      localStorage.setItem('buy', JSON.stringify(prevState.buy))
       return { buy: prevState.buy }
     })
   }
@@ -145,10 +147,12 @@ class Main extends React.Component {
             else throw Error("lỗi đăng nhập")
         })
         .then(result => {
+            
             if (result.error) throw Error("lỗi token")
             this.fetchData()
         })
         .catch(e => {
+            
             localStorage.removeItem('token')
             this.setState({page: 'login'})
         })
@@ -158,6 +162,7 @@ class Main extends React.Component {
   fetchData() {
     let decode = atob(window.localStorage.getItem('token').split('.')[1]);
     let info = JSON.parse(decode);
+    console.log(info)
     this.setState({
       id: info.userId,
       data: [{
@@ -173,7 +178,7 @@ class Main extends React.Component {
       score: info.info.scores,
       avatar: info.info.avatar,
       cover: info.info.cover,
-      buy: {...buy, ...info.info.buy},
+      buy: {...this.state.buy, ...info.info.buy, ...JSON.parse(localStorage.getItem('buy'))},
       family: info.info.family ? info.info.family : "Book Family" 
     })
 
@@ -221,6 +226,7 @@ class Main extends React.Component {
   }
 
   changePage(route) {
+    console.log(route)
     this.setState({
       page: route,
       route: 'home'
@@ -290,7 +296,7 @@ class Main extends React.Component {
           </Column>
           <Column span={5}>
             <Box paddingX={2}>
-                <Button text="Đăng xuất" color="red" onClick={e => {localStorage.removeItem('token'), this.changePage('login')}}/>
+                <Button text="Đăng xuất" color="red" onClick={e => {localStorage.removeItem('token'); this.changePage('login')}}/>
             </Box>
           </Column>
         </Box>

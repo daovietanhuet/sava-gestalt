@@ -74,9 +74,7 @@ class Login extends React.Component {
                  />
             </Box>
             <Box display="flex" justifyContent="center" padding={5}>
-                <Link href="\fogot">
                     <Text weight="bold">Quên mật khẩu?</Text>
-                </Link>
             </Box>
             <Box display="flex" justifyContent="center" paddingX={3}>
                 <Text>Để tiếp tục hãy tuân thủ <Link href="https://daovietanhuet.github.io/sava-privacy-policy/index.html"><Text weight="bold" inline>điều khoản</Text> và <Text weight="bold" inline>chính sách</Text> của Sava </Link></Text>
@@ -88,9 +86,7 @@ class Login extends React.Component {
                 <Text>Chưa có tài khoản?</Text>
             </Box>
             <Box marginTop={5} paddingX={4}>
-                <Link href="\register">
                     <Button text="Đăng ký" color="red"/>
-                </Link>
             </Box>
             <Box
           fit

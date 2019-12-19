@@ -12,7 +12,8 @@ class Shopping extends React.Component {
       'childrenPackages',
       'entertainmentPackages',
       'competitionPackages'],
-      sm: false
+      sm: false,
+      value: null
     };
     this.handleItemChange = this.handleItemChange.bind(this);
   }
@@ -21,8 +22,8 @@ class Shopping extends React.Component {
     this.setState(prevState => ({ itemIndex: activeIndex }));
   };
 
-  handleToggleSmall() {
-    this.setState(prevState => ({ sm: !prevState.sm }));
+  handleToggleSmall(value) {
+    this.setState(prevState => ({ sm: !prevState.sm, value: value}));
   }
 
   render() {
@@ -85,7 +86,7 @@ class Shopping extends React.Component {
                             </Mask>
                             </Touchable>
                             <Box paddingY={2}>
-                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"} onClick={e => {this.handleToggleSmall()}} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
+                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"} onClick={e => {this.handleToggleSmall(value)}} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
                             </Box>
                           </Box>
                         </Column>)
@@ -123,8 +124,17 @@ class Shopping extends React.Component {
                               </Mask>
                               </Touchable>
                             <Box paddingY={2}>
-                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"}  onClick={e => {this.handleToggleSmall()}} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
-                              {
+                              <Button text={this.props.buy["" + value + ""] ? "Đã mua" : "Mua ngay"}  onClick={e => {this.handleToggleSmall(value)}} color={this.props.buy["" + value + ""] ? "blue" : "gray"}></Button>
+                            </Box>
+                          </Box>
+                        </Column>)
+                    })
+                  }
+            </Box>
+          </Column>
+        </Box>
+      }
+               {
                               this.state.sm && (
                               <Modal
                                 accessibilityCloseLabel="close"
@@ -139,7 +149,7 @@ class Shopping extends React.Component {
                                 <Box padding={2} display="flex">
                                   <Column span={6}>
                                     <Box padding={1}>
-                                      <Button text="Có" color="blue" onClick={e => {this.props.buyPackage(value); this.handleToggleSmall()}}/>
+                                      <Button text="Có" color="blue" onClick={e => {this.props.buyPackage(this.state.value); this.handleToggleSmall()}}/>
                                     </Box>
                                   </Column>
                                   <Column span={6}>
@@ -150,15 +160,6 @@ class Shopping extends React.Component {
                                 </Box>
                               </Modal>
                               )}
-                            </Box>
-                          </Box>
-                        </Column>)
-                    })
-                  }
-            </Box>
-          </Column>
-        </Box>
-      }
       </Box>
     )
   }
